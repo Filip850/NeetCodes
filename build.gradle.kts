@@ -19,9 +19,9 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
     testLogging {
-        showStandardStreams = false
+        showStandardStreams = true           // show System.out
         events("passed", "failed", "skipped")
-        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.SHORT
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
 }
 
@@ -30,5 +30,8 @@ testlogger {
     showSummary = true
     showPassed = true
     showFailed = true
-    showSkipped = false
+    showSkipped = true
+    slowThreshold = 2000
+    showStackTraces = true
+    showSimpleNames = true
 }
