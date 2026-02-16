@@ -1,5 +1,6 @@
 plugins {
-    id("java")
+    java
+    id("com.adarshr.test-logger") version "3.2.0"
 }
 
 group = "pl.filip850"
@@ -17,4 +18,16 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+
+    testLogging {
+        showStandardStreams = false
+    }
+}
+
+testlogger {
+    theme = com.adarshr.gradle.testlogger.theme.ThemeType.STANDARD
+    showSummary = true
+    showPassed = true
+    showFailed = true
+    showSkipped = false
 }
