@@ -16,29 +16,21 @@ public class TopKFrequent {
       numOfOccurs.merge(num, 1, Integer::sum);
     }
 
-    List<Integer>[] buckets = new List[nums.length + 1];
+    List<List<Integer>> buckets = new ArrayList<>();
+    for (int i = 0; i <= nums.length; i++) {
+      buckets.add(new ArrayList<>());
+    }
     // So buckets[frequency] = value (which is a number) - so I can get numbers from the highest going downward until k satisfied.
+    numOfOccurs.forEach((value, freq) -> buckets.get(freq).add(value));
 
-    numOfOccurs.forEach((value, freq) -> {
-      if (buckets[freq] == null) {
-        buckets[freq] = new ArrayList<>();
-      }
-      buckets[freq].add(value);
-    });
     int[] result = new int[k];
     int index = 0;
-
     for (int freq = nums.length; freq >= 1 && index < k; freq--) {
-      if (buckets[freq] != null) {
-        for (int value : buckets[freq]) {
-          result[index++] = value;
-          if (index == k) {
-            return result;
-          }
-        }
+      for (int value : buckets.get(freq)) {
+        result[index++] = value;
+        if (index == k) break;
       }
     }
-
     return result;
   }
 }
