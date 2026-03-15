@@ -10,17 +10,37 @@ public class SudokuValidator {
       HashSet<Character> sudokuRow = new HashSet<>();
       HashSet<Character> sudokuCol = new HashSet<>();
       for (int j = 0; j < 9; j++) {
-        if (!sudokuRow.add(board[i][j])) return false;
-        if (!sudokuCol.add(board[j][i])) return false;
+        if (board[i][j] != '.' && !sudokuRow.add(board[i][j])) return false;
+        if (board[j][i] != '.' && !sudokuCol.add(board[j][i])) return false;
+      }
+    }
+
+    for (int subboxNumber = 0; subboxNumber < 9; subboxNumber++) {
+      HashSet<Character> sudokuSubbox = new HashSet<>();
+      for (Character e : getFlatSubbox(subboxNumber, board)){
+        if(e != '.' && !sudokuSubbox.add(e)) return false;
       }
     }
 
     return true;
   }
 
-  public char[] getFlatSubbox(char[][] board, int x, int y) {
 
-    return new char[]{};
+  //Optional: Made for better code readability. It can be micro optimised, but it is not STM or ESP code :>
+  char[] getFlatSubbox(int num, char[][] board) {
+    char[] box = new char[9];
+
+    int startRow = (num / 3) * 3;
+    int startCol = (num % 3) * 3;
+
+    int boxIter = 0;
+    for (int r = 0; r < 3; r++) {
+      for (int c = 0; c < 3; c++) {
+        box[boxIter++] = board[startRow + r][startCol + c];
+      }
+    }
+
+    return box;
   }
 
 }
