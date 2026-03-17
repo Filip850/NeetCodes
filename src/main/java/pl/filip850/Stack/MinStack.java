@@ -1,8 +1,7 @@
-package pl.filip850.ArraysHashing;
+package pl.filip850.Stack;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 public class MinStack {
   // "pop, top and getMin will always be called on non-empty stacks."

@@ -1,9 +1,8 @@
 package Stack;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.filip850.ArraysHashing.MinStack;
+import pl.filip850.Stack.MinStack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
